@@ -1,12 +1,14 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('toggle: sizes', () => {
-  test('should not have visual regressions', async ({ page }) => {
-    await page.goto(`/src/components/toggle/test/sizes`);
+configs().forEach(({ title, screenshot, config }) => {
+  test.describe(title('toggle: sizes'), () => {
+    test('should not have visual regressions', async ({ page }) => {
+      await page.goto(`/src/components/toggle/test/sizes`, config);
 
-    await page.setIonViewport();
+      await page.setIonViewport();
 
-    await expect(page).toHaveScreenshot(`toggle-sizes-diff-${page.getSnapshotSettings()}.png`);
+      await expect(page).toHaveScreenshot(screenshot(`toggle-sizes-diff`));
+    });
   });
 });

@@ -1,43 +1,48 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
 import { pullToRefresh } from '../test.utils';
 
 // TODO FW-2795: Enable this test when touch events/gestures are better supported in Playwright
-test.skip('refresher: custom scroll target', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/src/components/refresher/test/scroll-target');
-  });
-
-  test.describe('legacy refresher', () => {
-    test('should load more items when performing a pull-to-refresh', async ({ page }) => {
-      const items = page.locator('ion-item');
-
-      expect(await items.count()).toBe(30);
-
-      await pullToRefresh(page, '#inner-scroll');
-
-      expect(await items.count()).toBe(60);
+/**
+ * This behavior does not vary across directions.
+ */
+configs({ directions: ['ltr'] }).forEach(({ title, config }) => {
+  test.describe.skip(title('refresher: custom scroll target'), () => {
+    test.beforeEach(async ({ page }) => {
+      await page.goto('/src/components/refresher/test/scroll-target', config);
     });
-  });
 
-  test.describe('native refresher', () => {
-    test('should load more items when performing a pull-to-refresh', async ({ page }) => {
-      const refresherContent = page.locator('ion-refresher-content');
-      refresherContent.evaluateHandle((el: any) => {
-        // Resets the pullingIcon to enable the native refresher
-        el.pullingIcon = undefined;
+    test.describe('legacy refresher', () => {
+      test('should load more items when performing a pull-to-refresh', async ({ page }) => {
+        const items = page.locator('ion-item');
+
+        expect(await items.count()).toBe(30);
+
+        await pullToRefresh(page, '#inner-scroll');
+
+        expect(await items.count()).toBe(60);
       });
+    });
 
-      await page.waitForChanges();
+    test.describe('native refresher', () => {
+      test('should load more items when performing a pull-to-refresh', async ({ page }) => {
+        const refresherContent = page.locator('ion-refresher-content');
+        refresherContent.evaluateHandle((el: any) => {
+          // Resets the pullingIcon to enable the native refresher
+          el.pullingIcon = undefined;
+        });
 
-      const items = page.locator('ion-item');
+        await page.waitForChanges();
 
-      expect(await items.count()).toBe(30);
+        const items = page.locator('ion-item');
 
-      await pullToRefresh(page, '#inner-scroll');
+        expect(await items.count()).toBe(30);
 
-      expect(await items.count()).toBe(60);
+        await pullToRefresh(page, '#inner-scroll');
+
+        expect(await items.count()).toBe(60);
+      });
     });
   });
 });

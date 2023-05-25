@@ -1,27 +1,22 @@
 import type { E2EPage } from '@utils/test/playwright';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('animation: animationbuilder', async () => {
-  test.beforeEach(({ skip }) => {
-    skip.rtl();
-  });
-  test('backwards-compatibility animation', async ({ page }) => {
-    await page.goto('/src/utils/animation/test/animationbuilder');
-    await testNavigation(page);
-  });
+configs({ modes: ['ios'], directions: ['ltr'] }).forEach(({ title, config }) => {
+  test.describe(title('animation: animationbuilder'), async () => {
+    test('backwards-compatibility animation', async ({ page }) => {
+      await page.goto('/src/utils/animation/test/animationbuilder', config);
+      await testNavigation(page);
+    });
 
-  test('ios-transition web', async ({ page, skip }) => {
-    skip.mode('md');
+    test('ios-transition web', async ({ page }) => {
+      await page.goto('/src/utils/animation/test/animationbuilder', config);
+      await testNavigation(page);
+    });
 
-    await page.goto('/src/utils/animation/test/animationbuilder');
-    await testNavigation(page);
-  });
-
-  test('ios-transition css', async ({ page, skip }) => {
-    skip.mode('md');
-
-    await page.goto('/src/utils/animation/test/animationbuilder?ionic:_forceCSSAnimations=true');
-    await testNavigation(page);
+    test('ios-transition css', async ({ page }) => {
+      await page.goto('/src/utils/animation/test/animationbuilder?ionic:_forceCSSAnimations=true', config);
+      await testNavigation(page);
+    });
   });
 });
 

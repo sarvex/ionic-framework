@@ -17,9 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          # Checkout the latest commit in this branch
-          ref: ${{ github.event.pull_request.head.sha }}
       - uses: ./.github/workflows/actions/build-core
 
   test-core-clean-build:
@@ -135,7 +132,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        apps: [ng14, ng15]
+        apps: [ng14, ng15, ng16]
     needs: [build-angular, build-angular-server]
     runs-on: ubuntu-latest
     steps:

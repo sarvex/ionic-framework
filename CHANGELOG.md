@@ -3,6 +3,106 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.8](https://github.com/ionic-team/ionic-framework/compare/v7.0.7...v7.0.8) (2023-05-24)
+
+
+### Bug Fixes
+
+* **many:** update form controls (radio, checkbox, toggle, input, select) to have consistent disabled opacity ([#27396](https://github.com/ionic-team/ionic-framework/issues/27396)) ([995a848](https://github.com/ionic-team/ionic-framework/commit/995a8485751bb4058a59c7e958b1200f8f6539fa)), closes [#27184](https://github.com/ionic-team/ionic-framework/issues/27184)
+* **picker-column:** correct RTL direction ([#27460](https://github.com/ionic-team/ionic-framework/issues/27460)) ([d3dd72f](https://github.com/ionic-team/ionic-framework/commit/d3dd72fff67b3b437106e187e75f798653d105e2)), closes [#21205](https://github.com/ionic-team/ionic-framework/issues/21205)
+* **popover:** blur translucent popover in chromium ([#27484](https://github.com/ionic-team/ionic-framework/issues/27484)) ([a59eefb](https://github.com/ionic-team/ionic-framework/commit/a59eefb6a312d338895c46d80320ebe91cccac23)), closes [#22176](https://github.com/ionic-team/ionic-framework/issues/22176)
+
+
+
+
+
+## [7.0.7](https://github.com/ionic-team/ionic-framework/compare/v7.0.6...v7.0.7) (2023-05-17)
+
+
+### Bug Fixes
+
+* **accordion:** state updates if value changes ([#27463](https://github.com/ionic-team/ionic-framework/issues/27463)) ([3cbc592](https://github.com/ionic-team/ionic-framework/commit/3cbc592154a2b76cf63dfef67cb63de94dcec887)), closes [#27461](https://github.com/ionic-team/ionic-framework/issues/27461)
+* **checkbox, radio:** update border colors to match MD2 spec ([#27357](https://github.com/ionic-team/ionic-framework/issues/27357)) ([eabc6f3](https://github.com/ionic-team/ionic-framework/commit/eabc6f357675919dd82bea29a1776c0ca1bf89fd)), closes [#27170](https://github.com/ionic-team/ionic-framework/issues/27170)
+* **datetime-button:** log error if non-datetime instance is passed ([#27456](https://github.com/ionic-team/ionic-framework/issues/27456)) ([7b7e05a](https://github.com/ionic-team/ionic-framework/commit/7b7e05aa697a51ebfac42f96aa9510d4d96336de))
+* **footer, tab-bar:** wait for resize before re-showing ([#27417](https://github.com/ionic-team/ionic-framework/issues/27417)) ([70d9854](https://github.com/ionic-team/ionic-framework/commit/70d9854d8df5259ed715e282a6ca40ca3bea6192)), closes [#25990](https://github.com/ionic-team/ionic-framework/issues/25990)
+* **many:** form controls labels have increased margin ([#27447](https://github.com/ionic-team/ionic-framework/issues/27447)) ([381de0b](https://github.com/ionic-team/ionic-framework/commit/381de0b3d324805161232d8556fffd7022fcd84c)), closes [#27129](https://github.com/ionic-team/ionic-framework/issues/27129)
+* **picker-column:** dynamically change options ([#27359](https://github.com/ionic-team/ionic-framework/issues/27359)) ([7c7fb2b](https://github.com/ionic-team/ionic-framework/commit/7c7fb2b1a3bf35b123716b2f975231ceb01dcc07)), closes [#21763](https://github.com/ionic-team/ionic-framework/issues/21763)
+* **picker-column:** prevSelected is set to the correct value ([#27458](https://github.com/ionic-team/ionic-framework/issues/27458)) ([9dc126d](https://github.com/ionic-team/ionic-framework/commit/9dc126d38727c1ca16a75cfa65daab9a630be678)), closes [#21764](https://github.com/ionic-team/ionic-framework/issues/21764)
+* **select:** floating label covers placeholder when when blurred ([#27446](https://github.com/ionic-team/ionic-framework/issues/27446)) ([921bfae](https://github.com/ionic-team/ionic-framework/commit/921bfae9e68257734a9695cab9245bb335eb88fa)), closes [#27201](https://github.com/ionic-team/ionic-framework/issues/27201)
+* **select:** modern syntax works with forms ([#27480](https://github.com/ionic-team/ionic-framework/issues/27480)) ([13d2d11](https://github.com/ionic-team/ionic-framework/commit/13d2d115d44f109c3ea2a47bcb518c6090126325)), closes [#27478](https://github.com/ionic-team/ionic-framework/issues/27478)
+* **spinner:** allow resizing of dots, bubbles, and circles ([#27424](https://github.com/ionic-team/ionic-framework/issues/27424)) ([e5ae45d](https://github.com/ionic-team/ionic-framework/commit/e5ae45d32fde7328a704a6ffa18940106a069fa2)), closes [#18115](https://github.com/ionic-team/ionic-framework/issues/18115)
+* **tab-button:** use darker text to pass a11y ([#27355](https://github.com/ionic-team/ionic-framework/issues/27355)) ([0b23814](https://github.com/ionic-team/ionic-framework/commit/0b23814e0ba167ee6b2a2e430c47823d312d8c3c))
+
+
+
+
+
+## [7.0.6](https://github.com/ionic-team/ionic-framework/compare/v7.0.5...v7.0.6) (2023-05-11)
+
+
+### Bug Fixes
+
+* **content:** prevent forceUpdate in SSR ([#27440](https://github.com/ionic-team/ionic-framework/issues/27440)) ([e930988](https://github.com/ionic-team/ionic-framework/commit/e9309880d18cf03c1c139b00fe4b80794804e3de)), closes [#27411](https://github.com/ionic-team/ionic-framework/issues/27411)
+* **item-sliding:** options display on rtl ([#27203](https://github.com/ionic-team/ionic-framework/issues/27203)) ([b16fd1d](https://github.com/ionic-team/ionic-framework/commit/b16fd1d6f962f8fb6a57eb8301ecd904e1ca2153)), closes [#26103](https://github.com/ionic-team/ionic-framework/issues/26103) [#25285](https://github.com/ionic-team/ionic-framework/issues/25285)
+* **modal, popover:** wait for contents to mount ([#27344](https://github.com/ionic-team/ionic-framework/issues/27344)) ([c98ad6f](https://github.com/ionic-team/ionic-framework/commit/c98ad6f16ab147024fb74c179218fd8ff7f87db1)), closes [#27343](https://github.com/ionic-team/ionic-framework/issues/27343)
+* **overlays:** assign incremental id to overlay host ([#27278](https://github.com/ionic-team/ionic-framework/issues/27278)) ([9313a91](https://github.com/ionic-team/ionic-framework/commit/9313a914b7802dd4327caa970906ea18e882a3ce))
+* **range:** round value to same number of decimal places as props to avoid floating point rounding errors ([#27375](https://github.com/ionic-team/ionic-framework/issues/27375)) ([6e83ba4](https://github.com/ionic-team/ionic-framework/commit/6e83ba4051922da0a179a370d5baa0c57df8b01d)), closes [#21968](https://github.com/ionic-team/ionic-framework/issues/21968)
+* **react:** remove incorrect class key from IonicReactProps ([#27432](https://github.com/ionic-team/ionic-framework/issues/27432)) ([415c44c](https://github.com/ionic-team/ionic-framework/commit/415c44c0adc231367727c14f355c982afc385172))
+* **types:** export DatetimeHighlightStyle ([#27360](https://github.com/ionic-team/ionic-framework/issues/27360)) ([a37cdb1](https://github.com/ionic-team/ionic-framework/commit/a37cdb1c5ddab96e2e95369cc4e4b04a5ef0c5c7)), closes [#27353](https://github.com/ionic-team/ionic-framework/issues/27353)
+
+
+
+
+
+## [7.0.5](https://github.com/ionic-team/ionic-framework/compare/v7.0.4...v7.0.5) (2023-05-03)
+
+
+### Bug Fixes
+
+* **many:** form components do not take up full width in slot ([#27306](https://github.com/ionic-team/ionic-framework/issues/27306)) ([bfe7b38](https://github.com/ionic-team/ionic-framework/commit/bfe7b388318aca98014a0748f678e41a0f3910ae)), closes [#27305](https://github.com/ionic-team/ionic-framework/issues/27305)
+* **scroll-assist:** set correct scroll padding ([#27261](https://github.com/ionic-team/ionic-framework/issues/27261)) ([7e1f996](https://github.com/ionic-team/ionic-framework/commit/7e1f996dc63cd414b30b22aebbfc09b0b6b4f6fc)), closes [#27257](https://github.com/ionic-team/ionic-framework/issues/27257)
+* **toggle:** swipe gesture applies to knob ([#27255](https://github.com/ionic-team/ionic-framework/issues/27255)) ([6524582](https://github.com/ionic-team/ionic-framework/commit/65245826e3a775bcb8a5d6cfd05230f53470fc66)), closes [#27254](https://github.com/ionic-team/ionic-framework/issues/27254)
+
+
+
+
+
+## [7.0.4](https://github.com/ionic-team/ionic-framework/compare/v7.0.3...v7.0.4) (2023-04-26)
+
+
+### Bug Fixes
+
+* **breadcumb:** set background when focused on md ([#27274](https://github.com/ionic-team/ionic-framework/issues/27274)) ([01e028b](https://github.com/ionic-team/ionic-framework/commit/01e028b789f84e80f20ce2be7be7f8519f925211)), closes [#27273](https://github.com/ionic-team/ionic-framework/issues/27273)
+* **ios:** scroll assist sizes input correctly ([#27253](https://github.com/ionic-team/ionic-framework/issues/27253)) ([a874992](https://github.com/ionic-team/ionic-framework/commit/a8749929e01b07043631fbc8c522d39cbc3ae798)), closes [#27249](https://github.com/ionic-team/ionic-framework/issues/27249)
+* **modal:** set default text color ([#27207](https://github.com/ionic-team/ionic-framework/issues/27207)) ([c267b43](https://github.com/ionic-team/ionic-framework/commit/c267b43396057d9fab344a30bd83d00523911dc1)), closes [#26060](https://github.com/ionic-team/ionic-framework/issues/26060) [/github.com/ionic-team/ionic-framework/blob/main/core/src/components/popover/popover.scss#L42](https://github.com//github.com/ionic-team/ionic-framework/blob/main/core/src/components/popover/popover.scss/issues/L42)
+* **react:** nav will remove components from the DOM ([#25763](https://github.com/ionic-team/ionic-framework/issues/25763)) ([beb46bf](https://github.com/ionic-team/ionic-framework/commit/beb46bf9def466c4bf54aeed2b5ccdcfcf5cd579)), closes [#25753](https://github.com/ionic-team/ionic-framework/issues/25753)
+* **select:** adjust label alignment when in a card ([#27202](https://github.com/ionic-team/ionic-framework/issues/27202)) ([5a2b87c](https://github.com/ionic-team/ionic-framework/commit/5a2b87cbcc5c789d02b29e776e2b9768d7ad5631)), closes [#27086](https://github.com/ionic-team/ionic-framework/issues/27086)
+
+
+
+
+
+## [7.0.3](https://github.com/ionic-team/ionic-framework/compare/v7.0.2...v7.0.3) (2023-04-19)
+
+
+### Bug Fixes
+
+* **accordion:** inset style respects animated property ([#27173](https://github.com/ionic-team/ionic-framework/issues/27173)) ([114fe28](https://github.com/ionic-team/ionic-framework/commit/114fe28f3cc9ee52bc5eefa569353f490ab01023)), closes [#27047](https://github.com/ionic-team/ionic-framework/issues/27047)
+* **datetime:** clamp date between min and max when using month picker ([#27185](https://github.com/ionic-team/ionic-framework/issues/27185)) ([0385c08](https://github.com/ionic-team/ionic-framework/commit/0385c0862c98c9387b38d3a4416d74a2cc132ddd)), closes [#27027](https://github.com/ionic-team/ionic-framework/issues/27027)
+* **input:** string values are emitted ([#27226](https://github.com/ionic-team/ionic-framework/issues/27226)) ([cdb0627](https://github.com/ionic-team/ionic-framework/commit/cdb0627c87299ba36da670c81f9d4e3446bb500d))
+* **many:** dynamic label support for modern form controls ([#27156](https://github.com/ionic-team/ionic-framework/issues/27156)) ([30b548b](https://github.com/ionic-team/ionic-framework/commit/30b548b167883f0a657b0410d3bcf76dbb6895e0)), closes [#27085](https://github.com/ionic-team/ionic-framework/issues/27085)
+* **menu:** export menu interfaces ([#27227](https://github.com/ionic-team/ionic-framework/issues/27227)) ([80d8c66](https://github.com/ionic-team/ionic-framework/commit/80d8c667666ffdb6b8e668ef94cc58a93045bd0e))
+* **segment-button:** update checked state on render ([#26970](https://github.com/ionic-team/ionic-framework/issues/26970)) ([16aa977](https://github.com/ionic-team/ionic-framework/commit/16aa9770bba983705d807ad363498693a0e7969b)), closes [#26830](https://github.com/ionic-team/ionic-framework/issues/26830)
+* **select:** respect --border-radius with modern template ([#27213](https://github.com/ionic-team/ionic-framework/issues/27213)) ([6ffbdbb](https://github.com/ionic-team/ionic-framework/commit/6ffbdbb3b2b69290cf25753d535bc7483bd7c6e8)), closes [#27208](https://github.com/ionic-team/ionic-framework/issues/27208)
+* **select:** text does not overlap icon ([#27125](https://github.com/ionic-team/ionic-framework/issues/27125)) ([6fc0024](https://github.com/ionic-team/ionic-framework/commit/6fc002458ad23b129a214fd34d3a2fdc33800373)), closes [#27081](https://github.com/ionic-team/ionic-framework/issues/27081)
+* **textarea:** legacy textarea respects padding ([#27219](https://github.com/ionic-team/ionic-framework/issues/27219)) ([742d429](https://github.com/ionic-team/ionic-framework/commit/742d4295ddfe40c643d9dd21ffc6d9fb3eb6f717)), closes [#27218](https://github.com/ionic-team/ionic-framework/issues/27218)
+* **toast:** screen readers announce content ([#27198](https://github.com/ionic-team/ionic-framework/issues/27198)) ([76c8b94](https://github.com/ionic-team/ionic-framework/commit/76c8b94e2a818e1b824701b788d5ed8b6e554d42)), closes [#25866](https://github.com/ionic-team/ionic-framework/issues/25866)
+* **vue:** components have correct name in Vue Dev Tools ([#27180](https://github.com/ionic-team/ionic-framework/issues/27180)) ([07941a5](https://github.com/ionic-team/ionic-framework/commit/07941a59ba68a46d1345fecec6df82fb4655a0b5)), closes [#25199](https://github.com/ionic-team/ionic-framework/issues/25199)
+
+
+
+
+
 ## [7.0.2](https://github.com/ionic-team/ionic-framework/compare/v7.0.1...v7.0.2) (2023-04-12)
 
 

@@ -42,35 +42,6 @@ const projects: Project<PlaywrightTestOptions, PlaywrightWorkerOptions>[] = [
   }
 ];
 
-const modes = ['ios', 'md'];
-
-const generateProjects = () => {
-  const projectsWithMetadata: Project<PlaywrightTestOptions, PlaywrightWorkerOptions>[] = [];
-
-  modes.forEach(mode => {
-    projects.forEach(project => {
-      projectsWithMetadata.push({
-        ...project,
-        metadata: {
-          mode,
-          rtl: false,
-          _testing: true
-        }
-      });
-      projectsWithMetadata.push({
-        ...project,
-        metadata: {
-          mode,
-          rtl: true,
-          _testing: true
-        }
-      });
-    });
-  });
-
-  return projectsWithMetadata;
-}
-
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -81,7 +52,13 @@ const config: PlaywrightTestConfig = {
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000
+    timeout: 5000,
+    toHaveScreenshot: {
+      threshold: 0.1
+    },
+    toMatchSnapshot: {
+      threshold: 0.1
+    }
   },
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
@@ -108,7 +85,7 @@ const config: PlaywrightTestConfig = {
   },
 
   /* Configure projects for major browsers */
-  projects: generateProjects(),
+  projects,
   webServer: {
     command: 'serve -p 3333',
     port: 3333,

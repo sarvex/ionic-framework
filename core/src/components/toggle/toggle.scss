@@ -33,7 +33,6 @@
   outline: none;
 
   cursor: pointer;
-  touch-action: none;
   user-select: none;
   z-index: $z-index-item-input;
 }
@@ -43,13 +42,21 @@
   height: 100%;
 }
 
-:host(.in-item[slot="start"]:not(.legacy-toggle)),
-:host(.in-item[slot="end"]:not(.legacy-toggle)) {
+/**
+ * Toggle can be slotted
+ * in components such as item and
+ * toolbar which is why we do not
+ * limit the below behavior to just ion-item.
+ */
+:host([slot="start"]:not(.legacy-toggle)),
+:host([slot="end"]:not(.legacy-toggle)) {
   width: auto;
 }
 
 :host(.legacy-toggle) {
   contain: content;
+
+  touch-action: none;
 }
 
 :host(.ion-focused) input {
@@ -163,7 +170,7 @@ input {
    * the input should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, 8px, 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 // Toggle Label Placement - End
@@ -183,7 +190,7 @@ input {
  * when the label sits at the end.
  */
 :host(.toggle-label-placement-end) .label-text-wrapper {
-  @include margin(0, 0, 0, 8px);
+  @include margin(0, 0, 0, $form-control-label-margin);
 }
 
 // Input Label Placement - Fixed
@@ -195,7 +202,7 @@ input {
    * the input should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, 8px, 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 /**
@@ -239,8 +246,6 @@ input {
   height: 100%;
 
   background: var(--track-background);
-
-  pointer-events: none;
 
   overflow: inherit;
 }

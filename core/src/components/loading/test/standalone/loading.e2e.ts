@@ -1,25 +1,24 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('loading: standalone', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto('/src/components/loading/test/standalone');
-  });
-  test('should open a basic loader', async ({ page }) => {
-    const ionLoadingDidPresent = await page.spyOnEvent('ionLoadingDidPresent');
-    const ionLoadingDidDismiss = await page.spyOnEvent('ionLoadingDidPresent');
+configs().forEach(({ title, config }) => {
+  test.describe(title('loading: standalone'), () => {
+    test('should open a basic loader', async ({ page }) => {
+      await page.goto('/src/components/loading/test/standalone', config);
 
-    await page.click('#basic-loading');
+      const ionLoadingDidPresent = await page.spyOnEvent('ionLoadingDidPresent');
+      const ionLoadingDidDismiss = await page.spyOnEvent('ionLoadingDidPresent');
+      const loading = page.locator('ion-loading');
 
-    await ionLoadingDidPresent.next();
+      await page.click('#basic-loading');
 
-    await expect(page).toHaveScreenshot(`loading-standalone-diff-${page.getSnapshotSettings()}.png`);
+      await ionLoadingDidPresent.next();
+      await expect(loading).toBeVisible();
 
-    const loading = await page.locator('ion-loading');
-    await loading.evaluate((el: HTMLIonLoadingElement) => el.dismiss());
+      await loading.evaluate((el: HTMLIonLoadingElement) => el.dismiss());
 
-    await ionLoadingDidDismiss.next();
-
-    await expect(loading).toBeHidden();
+      await ionLoadingDidDismiss.next();
+      await expect(loading).toBeHidden();
+    });
   });
 });

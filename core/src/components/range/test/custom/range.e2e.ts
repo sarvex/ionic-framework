@@ -1,14 +1,13 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('range: customization', () => {
-  test.beforeEach(({ skip }) => {
-    skip.rtl();
-  });
-  test('should be customizable', async ({ page }) => {
-    await page.goto(`/src/components/range/test/custom`);
+configs({ directions: ['ltr'] }).forEach(({ title, screenshot, config }) => {
+  test.describe(title('range: customization'), () => {
+    test('should be customizable', async ({ page }) => {
+      await page.goto(`/src/components/range/test/custom`, config);
 
-    const range = page.locator('ion-range');
-    expect(await range.screenshot()).toMatchSnapshot(`range-custom-${page.getSnapshotSettings()}.png`);
+      const range = page.locator('ion-range');
+      expect(await range.screenshot()).toMatchSnapshot(screenshot(`range-custom`));
+    });
   });
 });

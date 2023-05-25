@@ -42,8 +42,14 @@
   height: 100%;
 }
 
-:host(.in-item[slot="start"]:not(.legacy-checkbox)),
-:host(.in-item[slot="end"]:not(.legacy-checkbox)) {
+/**
+ * Checkbox can be slotted
+ * in components such as item and
+ * toolbar which is why we do not
+ * limit the below behavior to just ion-item.
+ */
+:host([slot="start"]:not(.legacy-checkbox)),
+:host([slot="end"]:not(.legacy-checkbox)) {
   width: auto;
 }
 
@@ -188,7 +194,7 @@ input {
    * the checkbox should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, 8px, 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 
@@ -209,7 +215,7 @@ input {
  * when the label sits at the end.
  */
 :host(.checkbox-label-placement-end) .label-text-wrapper {
-  @include margin(0, 0, 0, 8px);
+  @include margin(0, 0, 0, $form-control-label-margin);
 }
 
 
@@ -222,7 +228,7 @@ input {
    * the checkbox should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, 8px, 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 /**

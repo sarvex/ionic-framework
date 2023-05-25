@@ -7,6 +7,7 @@ inputs:
     description: 'Playwright total number of test shards (ex: 4)'
   update:
     description: 'Whether or not to update the reference snapshots'
+
 runs:
   using: 'composite'
   steps:
@@ -51,7 +52,7 @@ runs:
         mkdir updated-screenshots
         cd ../ && rsync -R --progress $(git diff --name-only --cached) core/updated-screenshots
         if [ -d core/updated-screenshots/core ]; then
-          echo "::set-output name=hasUpdatedScreenshots::$(echo 'true')"
+          echo "hasUpdatedScreenshots=$(echo 'true')" >> $GITHUB_OUTPUT
           cd core/updated-screenshots
           zip -q -r ../../UpdatedScreenshots-${{ inputs.shard }}-${{ inputs.totalShards }}.zip core
         fi

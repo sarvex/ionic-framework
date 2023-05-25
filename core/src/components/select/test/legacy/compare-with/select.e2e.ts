@@ -1,72 +1,76 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('select: compare-with', () => {
-  test('should correctly set value when using compareWith property', async ({ page, skip }) => {
-    skip.rtl('This is checking internal logic. RTL tests are not needed');
+/**
+ * This behavior does not vary across modes/directions.
+ */
+configs({ modes: ['md'], directions: ['ltr'] }).forEach(({ title, config }) => {
+  test.describe(title('select: compare-with'), () => {
+    test('should correctly set value when using compareWith property', async ({ page }) => {
+      await page.goto('/src/components/select/test/legacy/compare-with', config);
 
-    await page.goto('/src/components/select/test/legacy/compare-with');
+      const multipleSelect = page.locator('#multiple');
+      const singleSelect = page.locator('#single');
 
-    const multipleSelect = await page.locator('#multiple');
-    const singleSelect = await page.locator('#single');
-
-    await expect(multipleSelect).toHaveJSProperty('value', [
-      {
+      await expect(multipleSelect).toHaveJSProperty('value', [
+        {
+          label: 'selected by default',
+          value: '1',
+        },
+      ]);
+      await expect(singleSelect).toHaveJSProperty('value', {
         label: 'selected by default',
         value: '1',
-      },
-    ]);
-    await expect(singleSelect).toHaveJSProperty('value', {
-      label: 'selected by default',
-      value: '1',
-    });
-  });
-
-  test('should work with different parameter types', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.metadata.rtl === true, 'This does not check LTR vs RTL layouts');
-    test.skip(testInfo.project.metadata.mode === 'md', 'This logic is the same across modes');
-    test.info().annotations.push({
-      type: 'issue',
-      description: 'https://github.com/ionic-team/ionic-framework/issues/25759',
+      });
     });
 
-    await page.setContent(`
-      <ion-select value="3" placeholder="Please select"></ion-select>
+    test('should work with different parameter types', async ({ page }) => {
+      test.info().annotations.push({
+        type: 'issue',
+        description: 'https://github.com/ionic-team/ionic-framework/issues/25759',
+      });
 
-      <script>
-        const data = [
-          { id: 1, name: 'Option #1' },
-          { id: 2, name: 'Option #2' },
-          { id: 3, name: 'Option #3' },
-        ]
-        const select = document.querySelector('ion-select');
-        select.compareWith = (val1, val2) => {
-          // convert val1 to a number
-          return +val1 === val2;
-        }
+      await page.setContent(
+        `
+        <ion-select value="3" placeholder="Please select"></ion-select>
 
-        data.forEach((d) => {
-          const el = document.createElement('ion-select-option');
-          el.value = d.id;
-          el.innerText = d.name;
+        <script>
+          const data = [
+            { id: 1, name: 'Option #1' },
+            { id: 2, name: 'Option #2' },
+            { id: 3, name: 'Option #3' },
+          ]
+          const select = document.querySelector('ion-select');
+          select.compareWith = (val1, val2) => {
+            // convert val1 to a number
+            return +val1 === val2;
+          }
 
-          select.appendChild(el);
-        });
-      </script>
-    `);
-    const ionAlertDidPresent = await page.spyOnEvent('ionAlertDidPresent');
+          data.forEach((d) => {
+            const el = document.createElement('ion-select-option');
+            el.value = d.id;
+            el.innerText = d.name;
 
-    const select = page.locator('ion-select');
-    const selectLabel = select.locator('[part="text"]');
+            select.appendChild(el);
+          });
+        </script>
+      `,
+        config
+      );
+      const ionAlertDidPresent = await page.spyOnEvent('ionAlertDidPresent');
 
-    await expect(selectLabel).toHaveText('Option #3');
+      const select = page.locator('ion-select');
+      const selectLabel = select.locator('[part="text"]');
 
-    await select.click();
-    await ionAlertDidPresent.next();
+      await expect(selectLabel).toHaveText('Option #3');
 
-    const selectRadios = page.locator('ion-alert button.alert-radio');
-    await expect(selectRadios.nth(0)).toHaveAttribute('aria-checked', 'false');
-    await expect(selectRadios.nth(1)).toHaveAttribute('aria-checked', 'false');
-    await expect(selectRadios.nth(2)).toHaveAttribute('aria-checked', 'true');
+      await select.click();
+      await ionAlertDidPresent.next();
+
+      const selectRadios = page.locator('ion-alert button.alert-radio');
+      await expect(selectRadios.nth(0)).toHaveAttribute('aria-checked', 'false');
+      await expect(selectRadios.nth(1)).toHaveAttribute('aria-checked', 'false');
+      await expect(selectRadios.nth(2)).toHaveAttribute('aria-checked', 'true');
+    });
   });
 });

@@ -1,34 +1,74 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('range: states', () => {
-  test.beforeEach(({ skip }) => {
-    skip.rtl();
-  });
-  test('should render enabled state', async ({ page }) => {
-    await page.setContent(`
-      <ion-range>
-        <ion-icon name="volume-off" slot="start"></ion-icon>
-        <ion-icon name="volume-high" slot="end"></ion-icon>
-        <span slot="label">Temperature</span>
-      </ion-range>
-    `);
+configs({ directions: ['ltr'] }).forEach(({ title, screenshot, config }) => {
+  test.describe(title('range: states'), () => {
+    test('should render enabled state', async ({ page }) => {
+      await page.setContent(
+        `
+        <ion-range>
+          <ion-icon name="volume-off" slot="start"></ion-icon>
+          <ion-icon name="volume-high" slot="end"></ion-icon>
+          <span slot="label">Temperature</span>
+        </ion-range>
+      `,
+        config
+      );
 
-    const range = page.locator('ion-range');
+      const range = page.locator('ion-range');
 
-    expect(await range.screenshot()).toMatchSnapshot(`range-enabled-${page.getSnapshotSettings()}.png`);
-  });
-  test('should render disabled state', async ({ page }) => {
-    await page.setContent(`
-      <ion-range disabled="true">
-        <ion-icon name="volume-off" slot="start"></ion-icon>
-        <ion-icon name="volume-high" slot="end"></ion-icon>
-        <span slot="label">Temperature</span>
-      </ion-range>
-    `);
+      expect(await range.screenshot()).toMatchSnapshot(screenshot(`range-enabled`));
+    });
 
-    const range = page.locator('ion-range');
+    test('should render disabled state', async ({ page }) => {
+      await page.setContent(
+        `
+        <ion-range disabled="true">
+          <ion-icon name="volume-off" slot="start"></ion-icon>
+          <ion-icon name="volume-high" slot="end"></ion-icon>
+          <span slot="label">Temperature</span>
+        </ion-range>
+      `,
+        config
+      );
 
-    expect(await range.screenshot()).toMatchSnapshot(`range-disabled-${page.getSnapshotSettings()}.png`);
+      const range = page.locator('ion-range');
+
+      expect(await range.screenshot()).toMatchSnapshot(screenshot(`range-disabled`));
+    });
+
+    test('should render disabled state with a value', async ({ page }) => {
+      await page.setContent(
+        `
+        <ion-range value="40%" disabled="true">
+          <ion-icon name="volume-off" slot="start"></ion-icon>
+          <ion-icon name="volume-high" slot="end"></ion-icon>
+          <span slot="label">Temperature</span>
+        </ion-range>
+      `,
+        config
+      );
+
+      const range = page.locator('ion-range');
+
+      expect(await range.screenshot()).toMatchSnapshot(screenshot(`range-disabled-value`));
+    });
+
+    test('should render disabled state with ticks', async ({ page }) => {
+      await page.setContent(
+        `
+        <ion-range snaps="true" ticks="true" step="10" value="10%" disabled>
+          <ion-icon name="volume-off" slot="start"></ion-icon>
+          <ion-icon name="volume-high" slot="end"></ion-icon>
+          <span slot="label">Temperature</span>
+        </ion-range>
+      `,
+        config
+      );
+
+      const range = page.locator('ion-range');
+
+      expect(await range.screenshot()).toMatchSnapshot(screenshot(`range-disabled-ticks`));
+    });
   });
 });

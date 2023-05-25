@@ -1,19 +1,24 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('toggle: enableOnOffLabels', () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(`/src/components/toggle/test/legacy/enable-on-off-labels`);
-  });
-
-  test('should not have visual regressions', async ({ page }) => {
-    await page.setIonViewport();
-
-    expect(await page.screenshot()).toMatchSnapshot(`toggle-on-off-labels-diff-${page.getSnapshotSettings()}.png`);
-  });
-
-  test.describe('dark mode', () => {
+configs().forEach(({ title, screenshot, config }) => {
+  test.describe(title('toggle: enableOnOffLabels'), () => {
     test('should not have visual regressions', async ({ page }) => {
+      await page.goto(`/src/components/toggle/test/legacy/enable-on-off-labels`, config);
+      await page.setIonViewport();
+
+      expect(await page.screenshot()).toMatchSnapshot(screenshot(`toggle-on-off-labels-diff`));
+    });
+  });
+});
+
+/**
+ * This behavior does not vary across directions.
+ */
+configs({ directions: ['ltr'] }).forEach(({ title, screenshot, config }) => {
+  test.describe(title('toggle: dark mode'), () => {
+    test('should not have visual regressions', async ({ page }) => {
+      await page.goto(`/src/components/toggle/test/legacy/enable-on-off-labels`, config);
       const ionPopoverDidPresent = await page.spyOnEvent('ionPopoverDidPresent');
       const ionPopoverDidDismiss = await page.spyOnEvent('ionPopoverDidDismiss');
 
@@ -32,9 +37,7 @@ test.describe('toggle: enableOnOffLabels', () => {
 
       await page.setIonViewport();
 
-      expect(await page.screenshot()).toMatchSnapshot(
-        `toggle-on-off-labels-dark-mode-diff-${page.getSnapshotSettings()}.png`
-      );
+      expect(await page.screenshot()).toMatchSnapshot(screenshot(`toggle-on-off-labels-dark-mode-diff`));
     });
   });
 });

@@ -1,19 +1,22 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('toast: standalone', () => {
-  test.beforeEach(async ({ page }, testInfo) => {
-    test.skip(testInfo.project.metadata.rtl === true, 'This test does not check LTR vs RTL layouts');
-    await page.goto(`/src/components/toast/test/standalone`);
-  });
-  test('should not have visual regressions', async ({ page }) => {
-    const ionToastDidPresent = await page.spyOnEvent('ionToastDidPresent');
+/**
+ * This behavior does not vary across modes/directions.
+ */
+configs({ modes: ['ios'], directions: ['ltr'] }).forEach(({ title, config }) => {
+  test.describe(title('toast: standalone'), () => {
+    test('should open overlay without ion-app', async ({ page }) => {
+      await page.goto(`/src/components/toast/test/standalone`, config);
 
-    const basicButton = page.locator('#basic-toast');
-    await basicButton.click();
+      const ionToastDidPresent = await page.spyOnEvent('ionToastDidPresent');
+      const toast = page.locator('ion-toast');
 
-    await ionToastDidPresent.next();
+      const basicButton = page.locator('#basic-toast');
+      await basicButton.click();
 
-    await expect(page).toHaveScreenshot(`toast-standalone-${page.getSnapshotSettings()}.png`);
+      await ionToastDidPresent.next();
+      await expect(toast).toBeVisible();
+    });
   });
 });

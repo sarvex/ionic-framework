@@ -75,8 +75,14 @@ input {
   height: 100%;
 }
 
-:host(.in-item[slot="start"]:not(.legacy-radio)),
-:host(.in-item[slot="end"]:not(.legacy-radio)) {
+/**
+ * Radio can be slotted
+ * in components such as item and
+ * toolbar which is why we do not
+ * limit the below behavior to just ion-item.
+ */
+:host([slot="start"]:not(.legacy-radio)),
+:host([slot="end"]:not(.legacy-radio)) {
   width: auto;
 }
 
@@ -166,7 +172,7 @@ input {
    * the radio should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, 8px, 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 // Radio Label Placement - End
@@ -186,7 +192,7 @@ input {
  * when the label sits at the end.
  */
 :host(.radio-label-placement-end) .label-text-wrapper {
-  @include margin(0, 0, 0, 8px);
+  @include margin(0, 0, 0, $form-control-label-margin);
 }
 
 // Radio Label Placement - Fixed
@@ -198,7 +204,7 @@ input {
    * the radio should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, 8px, 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 /**

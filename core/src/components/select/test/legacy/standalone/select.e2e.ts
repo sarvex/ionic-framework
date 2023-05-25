@@ -1,18 +1,20 @@
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('select: standalone', () => {
-  test('should open an overlay without ion-app', async ({ page }) => {
-    await page.goto(`/src/components/select/test/legacy/standalone`);
-    const ionAlertDidPresent = await page.spyOnEvent('ionAlertDidPresent');
-    const ionAlertDidDismiss = await page.spyOnEvent('ionAlertDidDismiss');
+configs({ directions: ['ltr'] }).forEach(({ title, config }) => {
+  test.describe(title('select: standalone'), () => {
+    test('should open an overlay without ion-app', async ({ page }) => {
+      await page.goto(`/src/components/select/test/legacy/standalone`, config);
+      const ionAlertDidPresent = await page.spyOnEvent('ionAlertDidPresent');
+      const ionAlertDidDismiss = await page.spyOnEvent('ionAlertDidDismiss');
 
-    await page.click('#gender');
+      await page.click('#gender');
 
-    await ionAlertDidPresent.next();
+      await ionAlertDidPresent.next();
 
-    const alert = await page.locator('ion-alert');
-    await alert.evaluate((el: HTMLIonAlertElement) => el.dismiss());
+      const alert = page.locator('ion-alert');
+      await alert.evaluate((el: HTMLIonAlertElement) => el.dismiss());
 
-    await ionAlertDidDismiss.next();
+      await ionAlertDidDismiss.next();
+    });
   });
 });

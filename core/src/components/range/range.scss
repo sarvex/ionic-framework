@@ -18,7 +18,6 @@
    * @prop --pin-color: Color of the range pin (only available in MD mode)
    */
   --knob-handle-size: calc(var(--knob-size) * 2);
-  --margin: 8px;
 
   display: flex;
   position: relative;
@@ -168,8 +167,14 @@
   width: 100%;
 }
 
-:host(.in-item[slot="start"]),
-:host(.in-item[slot="end"]) {
+/**
+ * Range can be slotted
+ * in components such as item and
+ * toolbar which is why we do not
+ * limit the below behavior to just ion-item.
+ */
+:host([slot="start"]),
+:host([slot="end"]) {
   width: auto;
 }
 
@@ -194,14 +199,6 @@
 
 // Range Label
 // ----------------------------------------------------------------
-
-/**
- * When the range is disabled, only the text
- * receives an opacity. The range changes color instead.
- */
-:host(.range-disabled) .label-text-wrapper {
-  opacity: 0.3;
-}
 
 ::slotted([slot="label"]) {
   /**
@@ -265,7 +262,7 @@
    * the range should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, var(--margin), 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 // Range Label Placement - End
@@ -285,7 +282,7 @@
  * when the label sits at the end.
  */
 :host(.range-label-placement-end) .label-text-wrapper {
-  @include margin(0, 0, 0, var(--margin));
+  @include margin(0, 0, 0, $form-control-label-margin);
 }
 
 // Range Label Placement - Fixed
@@ -297,7 +294,7 @@
    * the range should be on the end
    * when the label sits at the start.
    */
-  @include margin(0, var(--margin), 0, 0);
+  @include margin(0, $form-control-label-margin, 0, 0);
 }
 
 /**

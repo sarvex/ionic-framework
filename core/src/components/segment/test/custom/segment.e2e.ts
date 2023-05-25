@@ -1,14 +1,14 @@
 import { expect } from '@playwright/test';
-import { test } from '@utils/test/playwright';
+import { configs, test } from '@utils/test/playwright';
 
-test.describe('segment: custom', () => {
-  test('should not have visual regressions', async ({ page, skip }) => {
-    skip.rtl();
+configs({ directions: ['ltr'] }).forEach(({ title, screenshot, config }) => {
+  test.describe(title('segment: custom'), () => {
+    test('should not have visual regressions', async ({ page }) => {
+      await page.goto('/src/components/segment/test/custom', config);
 
-    await page.goto('/src/components/segment/test/custom');
+      await page.setIonViewport();
 
-    await page.setIonViewport();
-
-    await expect(page).toHaveScreenshot(`segment-custom-${page.getSnapshotSettings()}.png`);
+      await expect(page).toHaveScreenshot(screenshot(`segment-custom`));
+    });
   });
 });
