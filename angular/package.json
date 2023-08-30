@@ -76,7 +76,7 @@
     "@ionic/eslint-config": "0.3.0",
     "@ionic/prettier-config": "2.0.0",
     "@schematics/angular": "14.2.12",
-    "@types/node": "12.12.5",
+    "@types/node": "12.20.55",
     "@typescript-eslint/eslint-plugin": "5.52.0",
     "@typescript-eslint/parser": "5.52.0",
     "eslint": "8.34.0",
