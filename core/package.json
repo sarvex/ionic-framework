@@ -61,7 +61,7 @@
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
     "prettier": "2.6.1",
-    "rollup": "2.35.1",
+    "rollup": "2.79.1",
     "sass": "1.30.0",
     "serve": "14.2.1",
     "stylelint": "13.13.1",
