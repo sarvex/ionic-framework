@@ -33,7 +33,7 @@
     "@ionic/angular-server": "^6.1.15",
     "@nguniversal/express-engine": "^15.0.0",
     "core-js": "^2.6.11",
-    "express": "^4.15.2",
+    "express": "^4.19.2",
     "ionicons": "^6.0.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
