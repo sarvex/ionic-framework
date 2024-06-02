@@ -73,7 +73,7 @@
     "@angular/platform-browser": "14.2.12",
     "@angular/platform-browser-dynamic": "14.2.12",
     "@angular/router": "14.2.12",
-    "@ionic/eslint-config": "0.3.0",
+    "@ionic/eslint-config": "0.4.0",
     "@ionic/prettier-config": "2.0.0",
     "@schematics/angular": "14.2.12",
     "@types/node": "12.12.5",

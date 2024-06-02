@@ -51,7 +51,7 @@
   "homepage": "https://github.com/ionic-team/ionic#readme",
   "devDependencies": {
     "@babel/types": "7.22.11",
-    "@ionic/eslint-config": "0.3.0",
+    "@ionic/eslint-config": "0.4.0",
     "@ionic/prettier-config": "2.1.2",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
