@@ -38,7 +38,7 @@
   "devDependencies": {
     "@axe-core/playwright": "4.7.3",
     "@ionic/eslint-config": "0.3.0",
-    "@ionic/prettier-config": "2.0.0",
+    "@ionic/prettier-config": "2.1.2",
     "@jest/core": "27.5.1",
     "@playwright/test": "1.33.0",
     "@rollup/plugin-node-resolve": "8.4.0",
