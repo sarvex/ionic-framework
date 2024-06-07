@@ -41,12 +41,12 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.0.0",
-    "@angular-eslint/builder": "^16.0.0",
+    "@angular-eslint/builder": "^18.0.1",
     "@angular-eslint/eslint-plugin": "^16.0.0",
     "@angular-eslint/eslint-plugin-template": "^16.0.0",
     "@angular-eslint/schematics": "^16.0.0",
     "@angular-eslint/template-parser": "^16.0.0",
-    "@angular/cli": "^16.0.0",
+    "@angular/cli": "^18.0.3",
     "@angular/compiler-cli": "^16.0.0",
     "@angular/language-service": "^16.0.0",
     "@nguniversal/builders": "^16.0.0",
@@ -61,7 +61,7 @@
     "ts-node": "^8.3.0",
     "typescript": "~5.0.2",
     "wait-on": "^5.2.1",
-    "webpack": "^5.61.0",
+    "webpack": "^5.91.0",
     "webpack-cli": "^4.9.2"
   },
   "engines": {
